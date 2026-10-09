@@ -1,0 +1,3752 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mauloa | wasehula2026</title>
+
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+
+  <style>
+
+    * {
+
+      box-sizing: border-box;
+
+      margin: 0;
+
+      padding: 0;
+
+    }
+
+
+
+    html {
+
+      scroll-behavior: smooth;
+
+    }
+
+
+
+    body {
+
+      margin: 0;
+
+      font-family:
+
+        "Shippori Mincho",
+
+        "Yu Mincho",
+
+        "Hiragino Mincho ProN",
+
+        "Noto Serif JP",
+
+        serif;
+
+      color: #66586c;
+
+      background: #eee7f0;
+
+      overflow-x: hidden;
+
+      line-height: 1.95;
+
+      font-weight: 400;
+
+      text-align: center;
+
+    }
+
+
+
+    body::before {
+
+      content: "";
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: -20;
+
+      background:
+
+        linear-gradient(
+
+          rgba(255,255,255,.28),
+
+          rgba(255,255,255,.28)
+
+        ),
+
+        url("Mauloa_background.jpg") center / cover no-repeat;
+
+    }
+
+
+
+    main,
+
+    .opening {
+
+      width: 100%;
+
+      max-width: 480px;
+
+      margin: 0 auto;
+
+    }
+
+
+
+    /* =========================
+
+       OPENING
+
+    ========================= */
+
+
+
+    .opening {
+
+      position: relative;
+
+      width: min(100%, 480px);
+
+      aspect-ratio: 9 / 16;
+
+      height: auto;
+
+      margin: 0 auto;
+
+      overflow: hidden;
+
+      background: #d8cfe0;
+
+    }
+
+
+
+    .opening-images {
+
+      position: absolute;
+
+      inset: 0;
+
+      overflow: hidden;
+
+    }
+
+
+
+    .opening-video,
+
+    .opening-phone {
+
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+
+      object-position: center center;
+
+    }
+
+
+
+    .opening-video {
+
+      z-index: 1;
+
+      opacity: 1;
+
+      transition: opacity 1s ease;
+
+    }
+
+
+
+    .opening-phone {
+
+      z-index: 2;
+
+      opacity: 0;
+
+      transition: opacity 1s ease;
+
+      pointer-events: none;
+
+    }
+
+
+
+    .opening.show-phone .opening-video {
+
+      opacity: 0;
+
+    }
+
+
+
+    .opening.show-phone .opening-phone {
+
+      opacity: 1;
+
+    }
+
+
+
+    /* =========================
+
+       上部固定ナビ
+
+    ========================= */
+
+
+
+    .top-nav {
+
+      position: fixed;
+
+      top: 0;
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      width: min(100%, 480px);
+
+      z-index: 2000;
+
+      padding-top: env(safe-area-inset-top);
+
+      background: rgba(255,255,255,.88);
+
+      backdrop-filter: blur(12px);
+
+      -webkit-backdrop-filter: blur(12px);
+
+      border-bottom: 1px solid rgba(190,157,94,.2);
+
+      box-shadow: 0 3px 15px rgba(100,80,120,.07);
+
+    }
+
+
+
+    .nav-scroll {
+
+      display: flex;
+
+      gap: 3px;
+
+      width: 100%;
+
+      padding: 9px 10px;
+
+      overflow-x: auto;
+
+      white-space: nowrap;
+
+      justify-content: center;
+
+      scrollbar-width: none;
+
+    }
+
+
+
+    .nav-scroll::-webkit-scrollbar {
+
+      display: none;
+
+    }
+
+
+
+    .nav-scroll a {
+
+      flex-shrink: 0;
+
+      padding: 5px 9px;
+
+      color: #816d82;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 13px;
+
+      letter-spacing: .06em;
+
+      text-decoration: none;
+
+    }
+
+
+
+    .nav-scroll a:hover,
+
+    .nav-scroll a:active {
+
+      color: #a77fbc;
+
+    }
+
+
+
+    /* =========================
+
+       オープニング キラキラ
+
+    ========================= */
+
+
+
+    .opening-sparkles {
+
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 5;
+
+      pointer-events: none;
+
+      overflow: hidden;
+
+    }
+
+
+
+    .opening-sparkle {
+
+      position: absolute;
+
+      width: 5px;
+
+      height: 5px;
+
+      opacity: 0;
+
+      transform: scale(.72) rotate(45deg);
+
+      border-radius: 1.5px;
+
+      animation: sparkle-flash 3.8s ease-in-out infinite;
+
+      box-shadow:
+
+        0 0 5px currentColor,
+
+        0 0 9px currentColor;
+
+    }
+
+
+
+    .opening-sparkle::before,
+
+    .opening-sparkle::after {
+
+      content: "";
+
+      position: absolute;
+
+      left: 50%;
+
+      top: 50%;
+
+      transform: translate(-50%, -50%);
+
+      border-radius: 50%;
+
+      background: currentColor;
+
+      box-shadow: 0 0 5px currentColor;
+
+    }
+
+
+
+    .opening-sparkle::before {
+
+      width: 1px;
+
+      height: 11px;
+
+    }
+
+
+
+    .opening-sparkle::after {
+
+      width: 11px;
+
+      height: 1px;
+
+    }
+
+
+
+    .opening-sparkle.pink {
+
+      color: #f29ab7;
+
+      animation-delay: .15s;
+
+    }
+
+
+
+    .opening-sparkle.blue {
+
+      color: #8fd8f4;
+
+      animation-delay: .95s;
+
+    }
+
+
+
+    .opening-sparkle.purple {
+
+      color: #b9a1df;
+
+      animation-delay: 1.75s;
+
+    }
+
+
+
+    .opening-sparkle.yellow {
+
+      color: #f4d56d;
+
+      animation-delay: 2.55s;
+
+    }
+
+
+
+    @keyframes sparkle-flash {
+
+      0%,
+
+      73%,
+
+      100% {
+
+        opacity: 0;
+
+        transform: scale(.72) rotate(45deg);
+
+      }
+
+
+
+      77% {
+
+        opacity: .28;
+
+        transform: scale(.82) rotate(45deg);
+
+      }
+
+
+
+      80% {
+
+        opacity: .55;
+
+        transform: scale(.94) rotate(45deg);
+
+      }
+
+
+
+      83% {
+
+        opacity: .25;
+
+        transform: scale(.82) rotate(45deg);
+
+      }
+
+
+
+      87% {
+
+        opacity: 0;
+
+        transform: scale(.72) rotate(45deg);
+
+      }
+
+    }
+
+
+
+    .opening-light {
+
+      position: absolute;
+
+      width: 90%;
+
+      height: 90%;
+
+      left: 5%;
+
+      top: 5%;
+
+      z-index: 4;
+
+      pointer-events: none;
+
+      opacity: 0;
+
+      background: radial-gradient(
+
+        circle,
+
+        rgba(255,255,255,.34) 0%,
+
+        rgba(245,222,255,.15) 34%,
+
+        transparent 70%
+
+      );
+
+      animation: lightAppear 3.5s ease 2.2s forwards;
+
+    }
+
+
+
+    .sparkles {
+
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 7;
+
+      overflow: hidden;
+
+      pointer-events: none;
+
+    }
+
+
+
+    .sparkle {
+
+      position: absolute;
+
+      width: 1.3px;
+
+      height: 1.3px;
+
+      border-radius: 50%;
+
+      opacity: 0;
+
+      background: #fff !important;
+
+      box-shadow:
+
+        0 0 2px 1px currentColor,
+
+        0 0 6px 1px currentColor;
+
+      animation: particleFloat linear infinite;
+
+      will-change: transform, opacity;
+
+    }
+
+
+
+    .sparkle::after {
+
+      content: "";
+
+      position: absolute;
+
+      inset: -1.7px;
+
+      border-radius: 50%;
+
+      background: #fff;
+
+      filter: blur(1.2px);
+
+      opacity: .95;
+
+    }
+
+
+
+    .sparkle:nth-child(5n+1) {
+
+      color: #ffc2dc;
+
+    }
+
+
+
+    .sparkle:nth-child(5n+2) {
+
+      color: #cdbdff;
+
+    }
+
+
+
+    .sparkle:nth-child(5n+3) {
+
+      color: #b8dcff;
+
+    }
+
+
+
+    .sparkle:nth-child(5n+4) {
+
+      color: #ffe09a;
+
+    }
+
+
+
+    .sparkle:nth-child(5n) {
+
+      color: #bce9d2;
+
+    }
+
+
+
+    .sparkle.big {
+
+      width: 2px;
+
+      height: 2px;
+
+      box-shadow:
+
+        0 0 3px 1px currentColor,
+
+        0 0 8px 1px currentColor;
+
+    }
+
+
+
+    .sparkle.big::after {
+
+      inset: -2.5px;
+
+      filter: blur(1.5px);
+
+    }
+
+
+
+    @keyframes particleFloat {
+
+      0% {
+
+        transform: translate3d(0,-8vh,0) scale(.35);
+
+        opacity: 0;
+
+      }
+
+
+
+      12% {
+
+        opacity: .48;
+
+      }
+
+
+
+      35% {
+
+        transform: translate3d(10px,27vh,0) scale(1);
+
+        opacity: .72;
+
+      }
+
+
+
+      55% {
+
+        transform: translate3d(-8px,52vh,0) scale(.75);
+
+        opacity: .58;
+
+      }
+
+
+
+      78% {
+
+        transform: translate3d(12px,78vh,0) scale(1.15);
+
+        opacity: .72;
+
+      }
+
+
+
+      100% {
+
+        transform: translate3d(-7px,108vh,0) scale(.25);
+
+        opacity: 0;
+
+      }
+
+    }
+
+
+
+    @keyframes lightAppear {
+
+      0% {
+
+        opacity: 0;
+
+      }
+
+
+
+      45% {
+
+        opacity: .65;
+
+      }
+
+
+
+      100% {
+
+        opacity: .22;
+
+      }
+
+    }
+
+
+
+    .scroll-guide {
+
+      position: absolute;
+
+      bottom: 24px;
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      z-index: 10;
+
+      color: #fff;
+
+      text-shadow: 0 1px 10px rgba(90,60,100,.28);
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 12px;
+
+      letter-spacing: .25em;
+
+      opacity: 0;
+
+      animation: guideAppear 1s ease 4.5s forwards;
+
+    }
+
+
+
+    .scroll-guide span {
+
+      display: block;
+
+      font-size: 19px;
+
+      margin-top: 2px;
+
+      animation: arrowMove 1.5s ease-in-out infinite;
+
+    }
+
+
+
+    @keyframes guideAppear {
+
+      from {
+
+        opacity: 0;
+
+      }
+
+
+
+      to {
+
+        opacity: .9;
+
+      }
+
+    }
+
+
+
+    @keyframes arrowMove {
+
+      0%,
+
+      100% {
+
+        transform: translateY(0);
+
+      }
+
+
+
+      50% {
+
+        transform: translateY(5px);
+
+      }
+
+    }
+
+
+
+    /* =========================
+
+       共通セクション
+
+    ========================= */
+
+
+
+    main {
+
+      position: relative;
+
+      z-index: 1;
+
+    }
+
+
+
+    .section {
+
+      position: relative;
+
+      width: 100%;
+
+      margin: 0 auto;
+
+      padding: 90px 20px;
+
+      background: rgba(255,255,255,.22);
+
+    }
+
+
+
+    .section-title {
+
+      text-align: center;
+
+      margin-bottom: 42px;
+
+      color: #b18a43;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 42px;
+
+      font-weight: 500;
+
+      letter-spacing: .08em;
+
+    }
+
+
+
+    .section-title::after {
+
+      content: "";
+
+      display: block;
+
+      width: 55px;
+
+      height: 1px;
+
+      margin: 2px auto 0;
+
+      background: #c9a45d;
+
+    }
+
+
+
+    /* =========================
+
+       CONCEPT
+
+    ========================= */
+
+
+
+    .concept-copy {
+
+      text-align: center;
+
+      margin-bottom: 45px;
+
+      color: #a47d39;
+
+      font-size: 21px;
+
+      font-weight: 500;
+
+      line-height: 1.8;
+
+    }
+
+
+
+    .concept-copy-en {
+
+      display: block;
+
+      margin-top: 8px;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 19px;
+
+      letter-spacing: .08em;
+
+    }
+
+
+
+    .concept-box,
+
+    .info-box,
+
+    .setlist,
+
+    .access-list {
+
+      background: rgba(255,255,255,.82);
+
+      border: 1px solid rgba(190,157,94,.30);
+
+      box-shadow: 0 10px 35px rgba(115,90,130,.08);
+
+    }
+
+
+
+    .concept-box {
+
+      padding: 28px 21px;
+
+      border-radius: 18px;
+
+    }
+
+
+
+    .concept-block {
+
+      margin-bottom: 34px;
+
+    }
+
+
+
+    .concept-block:last-child {
+
+      margin-bottom: 0;
+
+    }
+
+
+
+    .concept-block h3 {
+
+      margin-bottom: 9px;
+
+      color: #b08a48;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 24px;
+
+      font-weight: 600;
+
+      text-align: center;
+
+    }
+
+
+
+    .concept-block p {
+
+      font-size: 14px;
+
+      line-height: 2.2;
+
+    }
+
+
+
+    .generations {
+
+      margin-top: 42px;
+
+      text-align: center;
+
+    }
+
+
+
+    .generation-number {
+
+      color: #b18a43;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 27px;
+
+      letter-spacing: .08em;
+
+    }
+
+
+
+    .generation-cross {
+
+      margin: 0 7px;
+
+      color: #c8a5ce;
+
+    }
+
+
+
+    .generation-message {
+
+      margin-top: 18px;
+
+      font-size: 14px;
+
+      line-height: 2;
+
+    }
+
+
+
+    /* =========================
+
+       TICKET
+
+    ========================= */
+
+
+
+    .ticket-section {
+
+      padding-top: 95px;
+
+    }
+
+
+
+    .ticket-intro {
+
+      text-align: center;
+
+      margin-bottom: 30px;
+
+    }
+
+
+
+    .ticket-date {
+
+      color: #a47d39;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 23px;
+
+      letter-spacing: .08em;
+
+    }
+
+
+
+    .ticket-free {
+
+      margin-top: 7px;
+
+      color: #78667d;
+
+      font-size: 17px;
+
+    }
+
+
+
+    .ticket-card {
+
+      position: relative;
+
+      overflow: hidden;
+
+      margin-bottom: 22px;
+
+      padding: 28px 20px;
+
+      border-radius: 22px;
+
+      background: #fff;
+
+      box-shadow: 0 10px 28px rgba(110,80,125,.08);
+
+    }
+
+
+
+    .ticket-card::after {
+
+      content: "";
+
+      position: absolute;
+
+      width: 170px;
+
+      height: 170px;
+
+      top: -95px;
+
+      right: -75px;
+
+      border-radius: 50%;
+
+      pointer-events: none;
+
+      z-index: 0;
+
+    }
+
+
+
+    .day-card::after {
+
+      background: radial-gradient(
+
+        circle,
+
+        rgba(248,205,220,.72) 0%,
+
+        rgba(248,205,220,.30) 45%,
+
+        rgba(248,205,220,0) 72%
+
+      );
+
+    }
+
+
+
+    .night-card::after {
+
+      background: radial-gradient(
+
+        circle,
+
+        rgba(193,219,244,.72) 0%,
+
+        rgba(193,219,244,.30) 45%,
+
+        rgba(193,219,244,0) 72%
+
+      );
+
+    }
+
+
+
+    .ticket-card > * {
+
+      position: relative;
+
+      z-index: 1;
+
+    }
+
+
+
+    .ticket-card h3 {
+
+      margin: 0;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 25px;
+
+      font-weight: 400;
+
+      letter-spacing: .08em;
+
+    }
+
+
+
+    .ticket-card .japanese {
+
+      margin-top: 2px;
+
+      font-size: 13px;
+
+    }
+
+
+
+    .ticket-time {
+
+      margin: 16px 0;
+
+      color: #6f788a;
+
+    }
+
+
+
+    .ticket-time span {
+
+      font-size: 14px;
+
+    }
+
+
+
+    .apply-button {
+
+      display: inline-block;
+
+      padding: 10px 22px;
+
+      border-radius: 999px;
+
+      text-decoration: none;
+
+      font-size: 13px;
+
+      transition: .3s;
+
+    }
+
+
+
+    .day-card .apply-button {
+
+      border: 1px solid rgba(207,150,177,.65);
+
+      background: rgba(255,255,255,.88);
+
+      color: #a06f88;
+
+    }
+
+
+
+    .night-card .apply-button {
+
+      border: 1px solid rgba(139,169,208,.68);
+
+      background: rgba(255,255,255,.88);
+
+      color: #617d9f;
+
+    }
+
+
+
+    /* =========================
+
+       ABOUT / SETLIST  / ACCESS
+
+    ========================= */
+
+
+
+    .info-box {
+
+      padding: 28px 21px;
+
+      border-radius: 18px;
+
+    }
+
+
+
+    .info-row {
+
+      padding: 16px 0;
+
+      border-bottom: 1px solid rgba(150,125,160,.15);
+
+      text-align: center;
+
+    }
+
+
+
+    .info-row:last-child {
+
+      border-bottom: none;
+
+    }
+
+
+
+    .info-label {
+
+      display: block;
+
+      margin-bottom: 3px;
+
+      color: #b08a48;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 18px;
+
+      letter-spacing: .08em;
+
+    }
+
+
+
+    .info-value {
+
+      font-size: 14px;
+
+    }
+
+
+
+    .setlist-note {
+
+      margin-bottom: 28px;
+
+      text-align: center;
+
+      font-size: 13px;
+
+    }
+
+
+
+    .setlist {
+
+      border-radius: 18px;
+
+      padding: 8px 21px;
+
+    }
+
+
+
+    .setlist-item {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 16px 0;
+
+      border-bottom: 1px solid rgba(150,125,160,.15);
+
+    }
+
+
+
+    .setlist-item:last-child {
+
+      border-bottom: none;
+
+    }
+
+    .coming-soon-item {
+
+  display: flex;
+
+  justify-content: center;
+
+}
+
+
+
+.coming-soon-item .song-name {
+
+  width: 100%;
+
+  text-align: center;
+
+}
+
+
+
+    .song-number {
+
+      width: 40px;
+
+      color: #b18a43;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 21px;
+
+    }
+
+
+
+    .song-name {
+
+      font-size: 14px;
+
+    }
+.setlist {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+
+.setlist-image-item {
+  width: 100%;
+  height: 230px;      /* ← 表示したい高さ */
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  background: transparent;
+}
+
+.setlist-image {
+  position: absolute;
+  width: 100%;
+  height: auto;
+
+  /* Coming Soon が見える位置まで画像を上へ移動 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  margin: 0;
+}
+
+
+
+    .venue-name {
+
+      margin-bottom: 4px;
+
+      text-align: center;
+
+      color: #76627c;
+
+      font-size: 20px;
+
+      font-weight: 600;
+
+    }
+
+
+
+    .venue-en {
+
+      margin-bottom: 28px;
+
+      text-align: center;
+
+      color: #a28b9f;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 16px;
+
+      letter-spacing: .08em;
+
+    }
+
+
+
+    .map-button {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 8px;
+
+      width: 100%;
+
+      margin: 24px 0 32px;
+
+      padding: 15px 18px;
+
+      border-radius: 999px;
+
+      border: 1px solid #b694d0;
+
+      background: linear-gradient(120deg,#e6dbf8,#fce5ef);
+
+      color: #695875;
+
+      text-decoration: none;
+
+      font-size: 14px;
+
+      font-weight: 600;
+
+      box-shadow: 0 7px 22px rgba(126,93,145,.12);
+
+    }
+
+
+
+    .access-list {
+
+      padding: 23px;
+
+      border-radius: 18px;
+
+      text-align: center;
+
+    }
+
+
+
+    .access-item {
+
+      margin-bottom: 19px;
+
+    }
+
+
+
+    .access-item:last-child {
+
+      margin-bottom: 0;
+
+    }
+
+
+
+    .access-item strong {
+
+      display: block;
+
+      color: #ae8642;
+
+      margin-bottom: 4px;
+
+      font-size: 14px;
+
+    }
+
+
+
+    .access-item span {
+
+      font-size: 13px;
+
+    }
+
+
+
+    /* =========================
+
+       SNS
+
+    ========================= */
+
+
+
+    .sns-section {
+
+      padding-top: 40px;
+
+      padding-bottom: 20px;
+
+    }
+
+
+
+    .sns-button {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 18px;
+
+      width: 100%;
+
+      margin-bottom: 17px;
+
+      padding: 16px 21px;
+
+      border-radius: 999px;
+
+      background: rgba(255,255,255,.86);
+
+      border: 1px solid rgba(190,157,94,.4);
+
+      color: #725e78;
+
+      text-decoration: none;
+
+      box-shadow: 0 7px 20px rgba(105,80,120,.08);
+
+      transition: transform .25s ease, box-shadow .25s ease;
+
+    }
+
+
+
+    .sns-button:hover {
+
+      transform: translateY(-2px);
+
+      box-shadow: 0 10px 24px rgba(105,80,120,.13);
+
+    }
+
+
+
+    .sns-left {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 12px;
+
+    }
+
+
+
+    .sns-icon {
+
+      width: 39px;
+
+      height: 39px;
+
+      flex: 0 0 39px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      border-radius: 12px;
+
+      color: #fff;
+
+      box-shadow: 0 5px 13px rgba(105,80,120,.13);
+
+      transition: transform .25s ease, box-shadow .25s ease;
+
+    }
+
+
+
+    .sns-icon.instagram {
+
+      background: linear-gradient(
+
+        135deg,
+
+        #f6bfd2 0%,
+
+        #d8b7e8 52%,
+
+        #bca9df 100%
+
+      );
+
+    }
+
+
+
+    .sns-icon.youtube {
+
+      background: linear-gradient(
+
+        135deg,
+
+        #f2a9b8 0%,
+
+        #dd8eaa 100%
+
+      );
+
+    }
+
+
+
+    .sns-icon svg {
+
+      width: 22px;
+
+      height: 22px;
+
+      display: block;
+
+    }
+
+
+
+    .sns-name {
+
+      font-size: 14px;
+
+    }
+
+
+
+    .sns-arrow {
+
+      color: #b18a43;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 20px;
+
+    }
+
+
+
+    /* =========================
+
+       最下部ロゴ
+
+    ========================= */
+
+
+
+    .site-footer {
+
+      width: 100%;
+
+      padding: 35px 20px 55px;
+
+      text-align: center;
+
+    }
+
+
+
+    .wasehula-logo {
+
+      display: block;
+
+      width: 115px;
+
+      max-width: 30vw;
+
+      height: auto;
+
+      margin: 0 auto;
+
+    }
+
+
+
+    /* =========================
+
+       固定TICKET
+
+    ========================= */
+
+
+
+    .floating-ticket {
+
+      position: fixed;
+
+      z-index: 1000;
+
+      left: 50%;
+
+      bottom: calc(15px + env(safe-area-inset-bottom));
+
+      width: min(90vw,360px);
+
+      transform: translate(-50%,130%);
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transition:
+
+        transform .7s cubic-bezier(.22,.8,.25,1),
+
+        opacity .5s ease;
+
+    }
+
+
+
+    .floating-ticket.visible {
+
+      transform: translate(-50%,0);
+
+      opacity: 1;
+
+      pointer-events: auto;
+
+    }
+
+
+
+    .floating-ticket img {
+
+      display: block;
+
+      width: 100%;
+
+      height: auto;
+
+      filter: drop-shadow(
+
+        0 7px 16px rgba(80,60,100,.18)
+
+      );
+
+    }
+
+
+
+    @media (min-width:481px) {
+
+      .opening {
+
+        box-shadow: 0 0 35px rgba(80,60,100,.12);
+
+      }
+
+
+
+      main {
+
+        box-shadow: 0 0 35px rgba(80,60,100,.08);
+
+      }
+
+    }
+
+/* =========================
+
+   スマホ表示：ABOUTを1画面に収める
+
+\========================= */
+
+
+
+#about {
+
+  padding-top: 55px;
+
+  padding-bottom: 45px;
+
+}
+
+
+
+#about .section-title {
+
+  margin-bottom: 22px;
+
+  font-size: 36px;
+
+}
+
+
+
+#about .section-title::after {
+
+  margin-top: 7px;
+
+}
+
+
+
+#about .info-box {
+
+  padding: 8px 21px;
+
+}
+
+
+
+#about .info-row {
+
+  padding: 9px 0;
+
+}
+
+
+
+#about .info-label {
+
+  margin-bottom: 0;
+
+  font-size: 16px;
+
+  line-height: 1.3;
+
+}
+
+
+
+#about .info-value {
+
+  font-size: 13px;
+
+  line-height: 1.55;
+
+}
+
+
+
+    /* =========================================
+
+       スマホだけ TICKET を横長・コンパクトに
+
+       ★今回の変更部分
+
+    ========================================= */
+
+
+
+    @media (max-width:480px) {
+
+
+
+      .ticket-section {
+
+        padding-top: 58px;
+
+        padding-bottom: 58px;
+
+      }
+
+
+
+      .ticket-section .section-title {
+
+        margin-bottom: 22px;
+
+        font-size: 36px;
+
+      }
+
+
+
+      .ticket-intro {
+
+        margin-bottom: 16px;
+
+      }
+
+
+
+      .ticket-date {
+
+        font-size: 21px;
+
+      }
+
+
+
+      .ticket-free {
+
+        margin-top: 2px;
+
+        font-size: 15px;
+
+      }
+
+
+
+      .ticket-card {
+
+        margin-bottom: 12px;
+
+        padding: 15px 20px;
+
+        border-radius: 22px;
+
+      }
+
+
+
+      .ticket-card h3 {
+
+        font-size: 22px;
+
+      }
+
+
+
+      .ticket-card .japanese {
+
+        margin-top: 0;
+
+        font-size: 12px;
+
+      }
+
+
+
+      .ticket-time {
+
+        margin: 7px 0 9px;
+
+        line-height: 1.45;
+
+      }
+
+
+
+      .ticket-time span {
+
+        font-size: 13px;
+
+      }
+
+
+
+      .apply-button {
+
+        padding: 7px 20px;
+
+        font-size: 12px;
+
+      }
+
+      /* SET LIST の COMING SOON を中央に */
+
+#setlist .coming-soon {
+
+  width: 100%;
+
+  text-align: center;
+
+  margin-left: auto;
+
+  margin-right: auto;
+
+}
+
+    }
+
+
+
+  
+   /* =========================
+   THEME IMAGE
+========================= */
+
+/* =========================
+   THEME IMAGE
+   PCでもスマホ幅のまま表示
+========================= */
+/* =========================
+   THEME
+========================= */
+
+.theme-section {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+
+  /* THEMEタイトルをもう少し下へ */
+  padding: 110px 20px 0;
+
+  /* 白い半透明の幕をTHEME全体に続ける */
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.theme-section .section-title::after {
+  margin-top: 0px;
+}
+
+.theme-section .section-title {
+  margin-bottom: 5px;
+}
+
+.theme-image {
+  display: block;
+  width: calc(100% + 40px);
+  height: auto;
+  margin-left: -20px;
+
+  /* 画像の透明部分にも白い幕を重ねる */
+  background: rgba(255, 255, 255, 0.22);
+}
+  </style>
+
+</head>
+
+
+
+
+
+<body>
+
+
+
+  <!-- =========================
+
+       上部固定ナビ
+
+  ========================= -->
+
+
+
+  <nav class="top-nav" aria-label="ページ内ナビゲーション">
+
+    <div class="nav-scroll">
+
+    
+
+      <a href="#about">ABOUT</a>
+
+      <a href="#concept">CONCEPT</a>
+
+      <a href="#ticket">TICKET</a>
+
+      <a href="#setlist">SETLIST</a>
+
+      <a href="#access">ACCESS</a>
+
+      <a href="#sns">SNS</a>
+
+    </div>
+
+  </nav>
+
+
+
+
+
+  <!-- =========================
+
+       OPENING
+
+  ========================= -->
+
+
+
+  <section class="opening" id="opening">
+
+
+
+    <div class="opening-images">
+
+
+
+      <video
+
+        id="openingVideo"
+
+        class="opening-video"
+
+        src="Mauloa_opening.mp4"
+
+        autoplay
+
+        muted
+
+        playsinline
+
+        webkit-playsinline
+
+        preload="auto"
+
+        loop
+
+        disablepictureinpicture
+
+      ></video>
+
+
+
+      <img
+
+        class="opening-phone"
+
+        src="Mauloa_phone.jpg"
+
+        data-fallback="Mauloa_スマホ用.jpg"
+
+        alt="Mauloa"
+
+      >
+
+
+
+      <div class="opening-sparkles" aria-hidden="true">
+
+
+
+        <span
+
+          class="opening-sparkle pink"
+
+          style="left:16%;top:24%"
+
+        ></span>
+
+
+
+        <span
+
+          class="opening-sparkle blue"
+
+          style="left:79%;top:20%"
+
+        ></span>
+
+
+
+        <span
+
+          class="opening-sparkle purple"
+
+          style="left:67%;top:46%"
+
+        ></span>
+
+
+
+        <span
+
+          class="opening-sparkle yellow"
+
+          style="left:23%;top:62%"
+
+        ></span>
+
+
+
+        <span
+
+          class="opening-sparkle pink"
+
+          style="left:84%;top:72%"
+
+        ></span>
+
+
+
+        <span
+
+          class="opening-sparkle blue"
+
+          style="left:42%;top:14%"
+
+        ></span>
+
+
+
+      </div>
+
+
+
+    </div>
+
+
+
+    <div
+
+      class="sparkles"
+
+      id="sparkles"
+
+      aria-hidden="true"
+
+    ></div>
+
+
+
+    <div class="opening-light"></div>
+
+
+
+    <div class="scroll-guide">
+
+      SCROLL
+
+      <span>↓</span>
+
+    </div>
+
+
+
+  </section>
+
+ <!-- =========================
+         CONCEPT / THEME
+    ========================= -->
+
+   <section class="theme-section" id="concept">
+
+  <h2 class="section-title">THEME</h2>
+
+  <img
+    src="Mauloa_theme.png"
+    alt="Mauloa Theme"
+    class="theme-image"
+  >
+
+</section>
+
+
+
+  <main>
+<!-- =========================
+
+         ABOUT
+
+    ========================= -->
+
+
+
+    <section class="section" id="about">
+
+
+
+      <h2 class="section-title">
+
+        ABOUT
+
+      </h2>
+
+
+
+      <div class="info-box">
+
+
+
+        <div class="info-row">
+
+          <span class="info-label">EVENT</span>
+
+          <span class="info-value">
+
+            wasehula2026 単独公演「Mauloa」
+
+          </span>
+
+        </div>
+
+
+
+        <div class="info-row">
+
+          <span class="info-label">DATE</span>
+
+          <span class="info-value">
+
+            2026年11月23日（月・祝）
+
+          </span>
+
+        </div>
+
+
+
+        <div class="info-row">
+
+          <span class="info-label">VENUE</span>
+
+          <span class="info-value">
+
+            早稲田大学 大隈記念講堂
+
+          </span>
+
+        </div>
+
+
+
+        <div class="info-row">
+
+          <span class="info-label">DAY SHOW</span>
+
+          <span class="info-value">
+
+            開場　14：30　 開演　15：00<br>
+
+            16：40　終演予定
+
+          </span>
+
+        </div>
+
+
+
+        <div class="info-row">
+
+          <span class="info-label">NIGHT SHOW</span>
+
+          <span class="info-value">
+
+            開場　17：20 　開演　17：50<br>
+
+            19：30　終演予定
+
+          </span>
+
+        </div>
+
+
+
+        <div class="info-row">
+
+          <span class="info-label">ADMISSION</span>
+
+          <span class="info-value">
+
+            入場無料
+
+          </span>
+
+        </div>
+
+
+
+      </div>
+
+
+
+    </section>
+
+
+
+
+
+
+    <!-- =========================
+
+         TICKET
+
+    ========================= -->
+
+
+
+    <section
+
+      class="section ticket-section"
+
+      id="ticket"
+
+    >
+
+
+
+      <h2 class="section-title">
+
+        TICKET
+
+      </h2>
+
+
+
+      <div class="ticket-intro">
+
+
+
+        <div class="ticket-date">
+
+          2026.11.23 MON
+
+        </div>
+
+
+
+        <div class="ticket-free">
+
+          入場無料
+          </span>
+          自由席
+        
+
+        </div>
+
+
+
+      </div>
+
+
+
+
+    
+
+
+       
+
+
+      <!-- 昼公演 -->
+
+
+
+      <div class="ticket-card day-card">
+
+
+
+        <h3>DAY SHOW</h3>
+
+
+
+        <div class="japanese">
+
+          昼公演
+
+        </div>
+
+
+
+        <div class="ticket-time">
+
+          15：00 START
+
+          <br>
+
+          <span>14：30 OPEN</span>
+
+        </div>
+
+
+
+        <a
+
+          href="https://docs.google.com/forms/d/e/1FAIpQLScXa0AWZgs8OVuPFoe9BgfTAf6aYAMRoWgjhYqueJblgZkbkg/viewform"
+
+          class="apply-button"
+
+          target="_blank"
+
+rel="noopener noreferrer"
+
+        >
+
+          チケットを申し込む
+
+        </a>
+
+
+
+      </div>
+
+
+
+
+
+      <!-- 夜公演 -->
+
+
+
+      <div class="ticket-card night-card">
+
+
+
+        <h3>NIGHT SHOW</h3>
+
+
+
+        <div class="japanese">
+
+          夜公演
+
+        </div>
+
+
+
+        <div class="ticket-time">
+
+          17：50 START
+
+          <br>
+
+          <span>17：20 OPEN</span>
+
+        </div>
+
+
+
+        <a
+
+          href="https://forms.gle/nXWXtqXjNE5mP2NJ6"
+
+          class="apply-button"
+
+
+
+        target="_blank"
+
+rel="noopener noreferrer">
+
+          チケットを申し込む
+
+        </a>
+
+
+
+      </div>
+
+
+
+      <p style="text-align:center;font-size:12px;">
+
+        ※昼公演・夜公演で申込フォームが異なります。
+
+      </p>
+
+
+
+    </section>
+
+
+
+
+
+    <!-- =========================
+
+         SETLIST
+
+    ========================= -->
+
+
+
+    <section
+
+      class="section"
+
+      id="setlist"
+
+    >
+
+
+
+      <h2 class="section-title">
+
+        SETLIST
+
+      </h2>
+
+
+
+      <p class="setlist-note">
+
+
+
+      </p>
+
+
+
+     <div class="setlist">
+
+
+
+ <div class="setlist">
+  <div class="setlist-image-item">
+    <img
+      src="Mauloa_setlist.png"
+      alt="Setlist"
+      class="setlist-image"
+    >
+  </div>
+</div>
+
+
+
+    </section>
+
+
+
+
+
+
+
+    <!-- =========================
+
+         ACCESS
+
+    ========================= -->
+
+
+
+    <section
+
+      class="section"
+
+      id="access"
+
+    >
+
+
+
+      <h2 class="section-title">
+
+        ACCESS
+
+      </h2>
+
+
+
+      <div class="venue-name">
+
+        早稲田大学 大隈記念講堂
+
+      </div>
+
+
+
+      <div class="venue-en">
+
+        OKUMA AUDITORIUM
+
+      </div>
+
+
+
+      <a
+
+        class="map-button"
+
+        href="https://www.google.com/maps/search/?api=1&query=早稲田大学%20大隈記念講堂"
+
+        target="_blank"
+
+        rel="noopener noreferrer"
+
+      >
+
+        <span>📍</span>
+
+        <span>会場をGoogle Mapsで見る</span>
+
+        <span>→</span>
+
+      </a>
+
+
+
+      <div class="access-list">
+
+
+
+        <div class="access-item">
+
+
+
+          <strong>
+
+            東京メトロ 東西線
+
+          </strong>
+
+
+
+          <span>
+
+            「早稲田駅」から徒歩約5分
+
+          </span>
+
+
+
+        </div>
+
+
+
+        <div class="access-item">
+
+
+
+          <strong>
+
+            都電荒川線
+
+          </strong>
+
+
+
+          <span>
+
+            「早稲田駅」から徒歩約5分
+
+          </span>
+
+
+
+        </div>
+
+
+
+        <div class="access-item">
+
+
+
+
+
+        </div>
+
+
+
+      </div>
+
+
+
+    </section>
+
+
+
+
+
+    <!-- =========================
+
+         SNS
+
+    ========================= -->
+
+
+
+    <section
+
+      class="section sns-section"
+
+      id="sns"
+
+    >
+
+
+
+      <a
+
+        class="sns-button"
+
+        href="https://www.instagram.com/wase_hula?stkn=dGd1NGJ4YW80cWx0&utm_source=qr"
+
+        target="_blank"
+
+        rel="noopener noreferrer"
+
+      >
+
+
+
+        <div class="sns-left">
+
+
+
+          <span
+
+            class="sns-icon instagram"
+
+            aria-label="Instagram"
+
+          >
+
+            <svg
+
+              viewBox="0 0 24 24"
+
+              aria-hidden="true"
+
+            >
+
+              <rect
+
+                x="3.2"
+
+                y="3.2"
+
+                width="17.6"
+
+                height="17.6"
+
+                rx="5.2"
+
+                fill="none"
+
+                stroke="currentColor"
+
+                stroke-width="1.8"
+
+              />
+
+
+
+              <circle
+
+                cx="12"
+
+                cy="12"
+
+                r="4.05"
+
+                fill="none"
+
+                stroke="currentColor"
+
+                stroke-width="1.8"
+
+              />
+
+
+
+              <circle
+
+                cx="17.35"
+
+                cy="6.7"
+
+                r="1.15"
+
+                fill="currentColor"
+
+              />
+
+            </svg>
+
+          </span>
+
+
+
+          <span class="sns-name">
+
+            wasehula Official Instagram
+
+          </span>
+
+
+
+        </div>
+
+
+
+        <span class="sns-arrow">
+
+          →
+
+        </span>
+
+
+
+      </a>
+
+
+
+
+
+      <a
+
+        class="sns-button"
+
+        href="https://youtube.com/@wase_hula?si=98Q_1G9grmS6Aktr"
+
+        target="_blank"
+
+        rel="noopener noreferrer"
+
+      >
+
+
+
+        <div class="sns-left">
+
+
+
+          <span
+
+            class="sns-icon youtube"
+
+            aria-label="YouTube"
+
+          >
+
+
+
+            <svg
+
+              viewBox="0 0 24 24"
+
+              aria-hidden="true"
+
+            >
+
+
+
+              <rect
+
+                x="2"
+
+                y="4.5"
+
+                width="20"
+
+                height="15"
+
+                rx="5"
+
+                fill="#ffffff"
+
+              />
+
+
+
+              <polygon
+
+                points="10,8.2 10,15.8 16.5,12"
+
+                fill="#d98fa8"
+
+              />
+
+
+
+            </svg>
+
+
+
+          </span>
+
+
+
+          <span class="sns-name">
+
+            wasehula Official YouTube
+
+          </span>
+
+
+
+        </div>
+
+
+
+        <span class="sns-arrow">
+
+          →
+
+        </span>
+
+
+
+      </a>
+
+
+
+    </section>
+
+
+
+
+
+    <!-- =========================
+
+         最下部ロゴ
+
+    ========================= -->
+
+
+
+    <footer class="site-footer">
+
+
+
+      <img
+
+        src="wasehula_logo 背景透過.png"
+
+        alt="wasehula"
+
+        class="wasehula-logo"
+
+      >
+
+
+
+    </footer>
+
+
+
+  </main>
+
+
+
+
+
+  <!-- =========================
+
+       固定TICKET
+
+  ========================= -->
+
+
+
+  <a
+
+    href="#ticket"
+
+    class="floating-ticket"
+
+    id="floatingTicket"
+
+    aria-label="チケット詳細へ"
+
+  >
+
+
+
+    <img
+
+      src="Mauloa_ticket.png"
+
+      alt="TICKET チケット取得はこちらから"
+
+    >
+
+
+
+  </a>
+
+
+
+
+
+  <script>
+
+
+
+    /* ==================================
+
+       OPENING
+
+       最初：動画
+
+       最初の1スクロール：スマホ画像へ
+
+    ================================== */
+
+
+
+    const opening =
+
+      document.getElementById("opening");
+
+
+
+    const openingVideo =
+
+      document.getElementById("openingVideo");
+
+
+
+    const openingPhone =
+
+      document.querySelector(".opening-phone");
+
+
+
+    let hasScrolledOpening = false;
+
+
+
+
+
+    /* スマホ画像が見つからない場合の予備画像 */
+
+
+
+    if (openingPhone) {
+
+
+
+      openingPhone.addEventListener(
+
+        "error",
+
+        () => {
+
+
+
+          const fallback =
+
+            openingPhone.dataset.fallback;
+
+
+
+          if (
+
+            fallback &&
+
+            !openingPhone.dataset.fallbackUsed
+
+          ) {
+
+
+
+            openingPhone.dataset.fallbackUsed =
+
+              "true";
+
+
+
+            openingPhone.src = fallback;
+
+
+
+          }
+
+
+
+        }
+
+      );
+
+
+
+    }
+
+
+
+
+
+    /* ==================================
+
+       動画の自動再生
+
+       ★ iPhone / Safari用に修正
+
+    ================================== */
+
+
+
+    if (openingVideo) {
+
+
+
+      openingVideo.muted = true;
+
+      openingVideo.defaultMuted = true;
+
+      openingVideo.playsInline = true;
+
+
+
+      openingVideo.setAttribute(
+
+        "muted",
+
+        ""
+
+      );
+
+
+
+      openingVideo.setAttribute(
+
+        "autoplay",
+
+        ""
+
+      );
+
+
+
+      openingVideo.setAttribute(
+
+        "playsinline",
+
+        ""
+
+      );
+
+
+
+      openingVideo.setAttribute(
+
+        "webkit-playsinline",
+
+        ""
+
+      );
+
+
+
+
+
+      const tryAutoplay = () => {
+
+
+
+        openingVideo.muted = true;
+
+
+
+        const playPromise =
+
+          openingVideo.play();
+
+
+
+        if (
+
+          playPromise &&
+
+          typeof playPromise.catch === "function"
+
+        ) {
+
+
+
+          playPromise.catch(() => {});
+
+
+
+        }
+
+
+
+      };
+
+
+
+
+
+      /* 読み込み直後 */
+
+      tryAutoplay();
+
+
+
+
+
+      /* 動画データが読み込まれた時 */
+
+      openingVideo.addEventListener(
+
+        "loadeddata",
+
+        tryAutoplay,
+
+        {
+
+          once: true
+
+        }
+
+      );
+
+
+
+
+
+      /* 再生可能になった時 */
+
+      openingVideo.addEventListener(
+
+        "canplay",
+
+        tryAutoplay,
+
+        {
+
+          once: true
+
+        }
+
+      );
+
+
+
+
+
+      /* Safariでページが表示された時 */
+
+      window.addEventListener(
+
+        "pageshow",
+
+        tryAutoplay,
+
+        {
+
+          once: true
+
+        }
+
+      );
+
+
+
+    }
+
+
+
+
+
+    /* ==================================
+
+       1回スクロールしたら
+
+       動画 → スマホ画像
+
+    ================================== */
+
+
+
+    function switchOpeningToPhone() {
+
+
+
+      if (hasScrolledOpening) {
+
+        return;
+
+      }
+
+
+
+      if (window.scrollY > 8) {
+
+
+
+        hasScrolledOpening = true;
+
+
+
+        opening.classList.add(
+
+          "show-phone"
+
+        );
+
+
+
+        if (openingVideo) {
+
+          openingVideo.pause();
+
+        }
+
+
+
+      }
+
+
+
+    }
+
+
+
+
+
+    window.addEventListener(
+
+      "scroll",
+
+      switchOpeningToPhone,
+
+      {
+
+        passive: true
+
+      }
+
+    );
+
+
+
+
+
+    /* ==================================
+
+       小さな光の粒を生成
+
+    ================================== */
+
+
+
+    const sparkleContainer =
+
+      document.getElementById("sparkles");
+
+
+
+
+
+    for (let i = 0; i < 75; i++) {
+
+
+
+      const particle =
+
+        document.createElement("span");
+
+
+
+      particle.className =
+
+        "sparkle" +
+
+        (i % 13 === 0 ? " big" : "");
+
+
+
+
+
+      particle.style.left =
+
+        (Math.random() * 100) + "%";
+
+
+
+      particle.style.top =
+
+        (-5 - Math.random() * 20) + "%";
+
+
+
+
+
+      const size =
+
+        0.9 + Math.random() * 1.2;
+
+
+
+      particle.style.width =
+
+        size + "px";
+
+
+
+      particle.style.height =
+
+        size + "px";
+
+
+
+
+
+      particle.style.animationDuration =
+
+        (8 + Math.random() * 7) + "s";
+
+
+
+
+
+      particle.style.animationDelay =
+
+        (1.8 + Math.random() * 8) + "s";
+
+
+
+
+
+      sparkleContainer.appendChild(
+
+        particle
+
+      );
+
+
+
+    }
+
+
+
+
+
+    /* ==================================
+
+       固定TICKET
+
+    ================================== */
+
+
+
+    const floatingTicket =
+
+      document.getElementById(
+
+        "floatingTicket"
+
+      );
+
+
+
+
+
+    function checkScroll() {
+
+
+
+      if (window.scrollY > 30) {
+
+
+
+        floatingTicket.classList.add(
+
+          "visible"
+
+        );
+
+
+
+      } else {
+
+
+
+        floatingTicket.classList.remove(
+
+          "visible"
+
+        );
+
+
+
+      }
+
+
+
+    }
+
+
+
+
+
+    window.addEventListener(
+
+      "scroll",
+
+      checkScroll,
+
+      {
+
+        passive: true
+
+      }
+
+    );
+
+
+
+
+
+    checkScroll();
+
+
+
+
+
+    /* ==================================
+
+       チケット後日公開
+
+    ================================== */
+
+
+
+    function comingSoon(event) {
+
+
+
+      event.preventDefault();
+
+
+
+      alert(
+
+        "チケット受付は後日公開予定です。\n\n" +
+
+        "公開までしばらくお待ちください。"
+
+      );
+
+
+
+    }
+
+
+
+  </script>
+
+
+
+</body>
+
+</html>
