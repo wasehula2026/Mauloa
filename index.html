@@ -1478,28 +1478,30 @@
 }
 
 
+
 .setlist-image-item {
   width: 100%;
-  height: 230px;      /* ← 表示したい高さ */
+  height: auto;
   padding: 0;
   margin: 0;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
   background: transparent;
 }
 
 .setlist-image {
-  position: absolute;
+  position: relative;
+  display: block;
   width: 100%;
   height: auto;
-
-  /* Coming Soon が見える位置まで画像を上へ移動 */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  margin: 0;
+  max-height: none;
+  object-fit: contain;
+  top: auto;
+  left: auto;
+  transform: none;
+  margin: 0 auto;
 }
+
 
 
 
@@ -2727,14 +2729,15 @@ rel="noopener noreferrer">
 
 
 
- <div class="setlist">
-  <div class="setlist-image-item">
-    <img
-      src="Mauloa_setlist.png"
-      alt="Setlist"
-      class="setlist-image"
-    >
-  </div>
+<div class="setlist-image-item">
+  <img
+    src="Mauloa_setlist.png"
+    alt="Setlist"
+    class="setlist-image"
+    style="width: 100%; height: auto; max-height: none; object-fit: contain;"
+  >
+</div>
+
 </div>
 
 
